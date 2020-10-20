@@ -3,7 +3,7 @@
   <Import Project="..\..\build\Common.props" />
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp2.1;netcoreapp3.1;netcoreapp5.0</TargetFrameworks>
+    <TargetFrameworks>netcoreapp2.1;netcoreapp3.1;net472</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>sharpfuzz</ToolCommandName>
@@ -12,10 +12,19 @@
     <PackageVersion>1.6.3</PackageVersion>
     <AssemblyVersion>1.6.3.0</AssemblyVersion>
     <Description>Command line tool for SharpFuzz instrumentation</Description>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\build\SharpFuzz.snk</AssemblyOriginatorKeyFile>
+    <PublicSign>true</PublicSign>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SharpFuzz\SharpFuzz.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\build\SharpFuzz.snk">
+      <Link>SharpFuzz.snk</Link>
+    </None>
   </ItemGroup>
 
 </Project>

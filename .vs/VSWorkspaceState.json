@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\AngleSharp",
+    "\\src\\AngleSharp\\AngleSharp.Fuzz",
+    "\\src\\SharpFuzz",
+    "\\src\\SharpFuzz.Common"
+  ],
+  "SelectedNode": "\\src\\AngleSharp\\AngleSharp.Fuzz\\AngleSharp.Fuzz.csproj",
+  "PreviewInSolutionExplorer": false
+}

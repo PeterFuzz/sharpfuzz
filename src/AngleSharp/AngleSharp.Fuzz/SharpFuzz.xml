@@ -1,0 +1,195 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SharpFuzz</name>
+    </assembly>
+    <members>
+        <member name="T:SharpFuzz.Fuzzer">
+            <summary>
+            American fuzzy lop instrumentation and fork server for .NET libraries.
+            </summary>
+            <summary>
+            American fuzzy lop instrumentation and fork server for .NET libraries.
+            </summary>
+            <summary>
+            American fuzzy lop instrumentation and fork server for .NET libraries.
+            </summary>
+            <summary>
+            SFZ Fuzzer instrumentation and fuzzer main loop for .NET libraries.
+            </summary>
+        </member>
+        <member name="M:SharpFuzz.Fuzzer.Instrument(System.String,System.Func{System.String,System.Boolean},System.Boolean)">
+            <summary>
+            Instrument method performs the in-place afl-fuzz
+            instrumentation of the <paramref name="source"/> assembly.
+            </summary>
+            <param name="source">The assembly to instrument.</param>
+            <param name="matcher">
+            A function that accepts the full name of the class and returns
+            true if the class should be instrumented, false otherwise.
+            </param>
+            <param name="enableOnBranchCallback">
+            True if <see cref="F:SharpFuzz.Common.Trace.OnBranch"/> callback
+            should be called each time a branch is hit, false otherwise.
+            </param>
+            <returns>An ordered collection of instrumented types.</returns>
+        </member>
+        <member name="M:SharpFuzz.Fuzzer.Run(System.Action{System.IO.Stream})">
+            <summary>
+            Run method starts the .NET equivalent of AFL fork server.
+            It repeatedly executes the passed action and reports the
+            execution result to afl-fuzz. If the executable that is
+            calling it is not running under afl-fuzz, the action will
+            be executed only once.
+            </summary>
+            <param name="action">
+            Some action that calls the instrumented library. The stream
+            argument passed to the action contains the input data. If an
+            uncaught exception escapes the call, FAULT_CRASH execution
+            status code is reported to afl-fuzz.
+            </param>
+        </member>
+        <member name="M:SharpFuzz.Fuzzer.Run(System.Action{System.String},System.Int32)">
+            <summary>
+            Run method starts the .NET equivalent of AFL fork server.
+            It repeatedly executes the passed action and reports the
+            execution result to afl-fuzz. If the executable that is
+            calling it is not running under afl-fuzz, the action will
+            be executed only once.
+            </summary>
+            <param name="action">
+            Some action that calls the instrumented library. The string
+            argument passed to the action contains the input data. If an
+            uncaught exception escapes the call, FAULT_CRASH execution
+            status code is reported to afl-fuzz.
+            </param>
+            <param name="bufferSize">
+            Optional size (in bytes) of the input buffer that will be used
+            to read the whole stream before it's converted to a string. You
+            should avoid using this parameter, unless fuzzer detects some
+            interesting input that exceeds 10 MB (which is highly unlikely).
+            </param>
+            <exception cref="T:System.InvalidOperationException">
+            Thrown if input data size in bytes exceeds <paramref name="bufferSize"/>.
+            </exception>
+        </member>
+        <member name="M:SharpFuzz.Fuzzer.RunOnce(System.Action{System.IO.Stream})">
+            <summary>
+            RunOnce method executes the passed action once and writes the
+            trace bits to the shared memory. This function will only work
+            if the executable that is calling it is running under afl-fuzz.
+            </summary>
+            <param name="action">
+            Some action that calls the instrumented library. The stream
+            argument passed to the action contains the input data.
+            </param>
+        </member>
+        <member name="T:SharpFuzz.Fuzzer.LibFuzzer">
+            <summary>
+            LibFuzzer class contains the libFuzzer runner. It enables users
+            to fuzz their code with libFuzzer by using the libFuzzer-dotnet
+            binary, which acts as a bridge between the libFuzzer and the
+            managed code (it currently works only on Linux).
+            </summary>
+        </member>
+        <member name="M:SharpFuzz.Fuzzer.LibFuzzer.Run(SharpFuzz.ReadOnlySpanAction)">
+            <summary>
+            Run method starts the libFuzzer runner. It repeatedly executes
+            the passed action and reports the execution result to libFuzzer.
+            If the executable that is calling it is not running under libFuzzer,
+            the action will be executed normally, and will receive its input
+            from the file specified in the first command line parameter.
+            </summary>
+            <param name="action">
+            Some action that calls the instrumented library. The span argument
+            passed to the action contains the input data. If an uncaught
+            exception escapes the call, crash is reported to libFuzzer.
+            </param>
+        </member>
+        <member name="T:SharpFuzz.Fuzzer.OutOfProcess">
+            <summary>
+            OutOfProccess class contains the special fork server implementation
+            that can survive uncatchable exceptions and timeouts by executing
+            the fuzzed code in the separate process. The child process will be
+            automatically restarted after we detect that it's dead. Starting
+            new dotnet process is very slow, so if you expect this situation
+            to happen often, it's better to immediately fix the bugs causing
+            it, and then continue with the fast fuzzing.
+            </summary>
+        </member>
+        <member name="M:SharpFuzz.Fuzzer.OutOfProcess.Run(System.Action{System.IO.Stream})">
+            <summary>
+            Run method starts the .NET equivalent of AFL fork server.
+            It repeatedly executes the passed action and reports the
+            execution result to afl-fuzz. If the executable that is
+            calling it is not running under afl-fuzz, the action will
+            be executed only once.
+            </summary>
+            <param name="action">
+            Some action that calls the instrumented library. The stream
+            argument passed to the action contains the input data. If an
+            uncaught exception escapes the call, FAULT_CRASH execution
+            status code is reported to afl-fuzz.
+            </param>
+        </member>
+        <member name="M:SharpFuzz.Fuzzer.OutOfProcess.Run(System.Action{System.String},System.Int32)">
+            <summary>
+            Run method starts the .NET equivalent of AFL fork server.
+            It repeatedly executes the passed action and reports the
+            execution result to afl-fuzz. If the executable that is
+            calling it is not running under afl-fuzz, the action will
+            be executed only once.
+            </summary>
+            <param name="action">
+            Some action that calls the instrumented library. The stream
+            argument passed to the action contains the input data. If an
+            uncaught exception escapes the call, FAULT_CRASH execution
+            status code is reported to afl-fuzz.
+            </param>
+            <param name="bufferSize">
+            Optional size (in bytes) of the input buffer that will be used
+            to read the whole stream before it's converted to a string. You
+            should avoid using this parameter, unless fuzzer detects some
+            interesting input that exceeds 10 MB (which is highly unlikely).
+            </param>
+            <exception cref="T:System.InvalidOperationException">
+            Thrown if input data size in bytes exceeds <paramref name="bufferSize"/>.
+            </exception>
+        </member>
+        <member name="T:SharpFuzz.Fuzzer.SfzFuzzer">
+            <summary>
+            SfzFuzzer class contains the SFZ fuzzer main loop implementation
+            that can receive coordination through shared memory and pipes.
+            </summary>
+        </member>
+        <member name="M:SharpFuzz.Fuzzer.SfzFuzzer.RunSfz(System.String[],System.Action{System.Byte[]})">
+            <summary>
+            Run method starts the .NET equivalent of SFZ fuzzer main loop.
+            </summary>
+            <param name="action">
+            Some action that calls the instrumented library. The stream
+            argument passed to the action contains the serialized input data. 
+            </param>
+        </member>
+        <member name="T:SharpFuzz.InstrumentationException">
+            <summary>
+            Represents errors that occur during assembly instrumentation.
+            </summary>
+        </member>
+        <member name="M:SharpFuzz.InstrumentationException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SharpFuzz.InstrumentationException"/>
+            class with a specified error message.
+            </summary>
+            <param name="message">Message that describes the error.</param>
+        </member>
+        <member name="T:SharpFuzz.ReadOnlySpanAction">
+            <summary>
+            Encapsulates a method that has a single parameter and does not return a value.
+            </summary>
+            <param name="span">
+            The parameter of the method that this delegate encapsulates.
+            </param>
+        </member>
+    </members>
+</doc>

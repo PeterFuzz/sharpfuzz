@@ -3,13 +3,22 @@
   <Import Project="..\..\build\Common.props" />
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net48</TargetFrameworks>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <PackageId>SharpFuzz.Common</PackageId>
     <Title>SharpFuzz.Common</Title>
     <PackageVersion>2.2.0</PackageVersion>
     <AssemblyVersion>2.2.0.0</AssemblyVersion>
     <Description>Internal implementation package not meant for direct consumption</Description>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\build\SharpFuzz.snk</AssemblyOriginatorKeyFile>
+    <PublicSign>true</PublicSign>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\build\SharpFuzz.snk">
+      <Link>SharpFuzz.snk</Link>
+    </None>
+  </ItemGroup>
 
 </Project>

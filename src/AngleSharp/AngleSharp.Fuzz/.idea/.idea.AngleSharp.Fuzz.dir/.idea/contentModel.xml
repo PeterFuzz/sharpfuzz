@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\PeterFuzz\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\PeterFuzz\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_.19.00" t="ExcludeRecursive" />
+    <e p="C:\Users\PeterFuzz\sharpfuzz\src\AngleSharp\AngleSharp.Fuzz" t="IncludeRecursive">
+      <e p="AngleSharp.dll" t="Include" />
+      <e p="AngleSharp.Fuzz.csproj" t="IncludeRecursive" />
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="dnlib.dll" t="Include" />
+      <e p="go_build_AngleSharp_Fuzz_.exe" t="Include" />
+      <e p="Microsoft.Bcl.AsyncInterfaces.dll" t="Include" />
+      <e p="obj" t="ExcludeRecursive">
+        <e p="Debug" t="Include">
+          <e p="net48" t="Include">
+            <e p="AngleSharp.Fuzz.AssemblyInfo.cs" t="Include" />
+          </e>
+          <e p="netcoreapp2.2" t="Include">
+            <e p="AngleSharp.Fuzz.AssemblyInfo.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Program.cs" t="Include" />
+      <e p="SharpFuzz.Common.dll" t="Include" />
+      <e p="SharpFuzz.Common.pdb" t="Include" />
+      <e p="SharpFuzz.dll" t="Include" />
+      <e p="SharpFuzz.pdb" t="Include" />
+      <e p="SharpFuzz.xml" t="Include" />
+      <e p="System.Buffers.dll" t="Include" />
+      <e p="System.Memory.dll" t="Include" />
+      <e p="System.Numerics.Vectors.dll" t="Include" />
+      <e p="System.Runtime.CompilerServices.Unsafe.dll" t="Include" />
+      <e p="System.Text.Encodings.Web.dll" t="Include" />
+      <e p="System.Text.Json.dll" t="Include" />
+      <e p="System.Threading.Tasks.Extensions.dll" t="Include" />
+      <e p="System.ValueTuple.dll" t="Include" />
+      <e p="testee.go" t="Include" />
+      <e p="UpgradeLog.htm" t="Include" />
+      <e p="UpgradeLog2.htm" t="Include" />
+    </e>
+  </component>
+</project>
